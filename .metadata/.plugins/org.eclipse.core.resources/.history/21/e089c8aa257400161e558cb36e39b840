@@ -1,0 +1,14 @@
+package ipiranga;
+
+import exceptions.StringInvalidaException;
+
+public class Taxista extends Contribuinte {
+
+	public Taxista(String nomeContribuinte, String cpfContribuinte,
+			double valorBens) throws StringInvalidaException {
+		super(nomeContribuinte, cpfContribuinte, valorBens);
+		
+	}
+	
+
+}

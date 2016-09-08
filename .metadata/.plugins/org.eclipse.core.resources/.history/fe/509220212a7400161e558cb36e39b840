@@ -1,0 +1,42 @@
+package ipiranga;
+
+import exceptions.StringInvalidaException;
+import exceptions.ValorInvalidoException;
+
+public class Professores extends Contribuinte {
+
+	private double salario;
+
+	public Professores(String nomeContribuinte, String cpfContribuinte,
+			double valorBens, double salario) throws StringInvalidaException,
+			ValorInvalidoException {
+		super(nomeContribuinte, cpfContribuinte, valorBens);
+
+		if (salario < 0) {
+			throw new ValorInvalidoException(
+					"Salario nao pode ser menor que zero");
+		}
+		this.salario = salario;
+	}
+
+	public double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+
+	@Override
+	public double calculoTributacao() {
+		if (this.getSalario() <= 880.0) {
+			return this.getSalario() - (0.05 * this.getSalario());
+		} else if (this.getSalario() > 880.0
+				&& this.getSalario() <= (5 * 880.0)) {
+			return this.getSalario() - (0.10 * this.getSalario());
+		} else {
+			return this.getSalario() - (0.20 * this.getSalario());
+		}
+	}
+
+}

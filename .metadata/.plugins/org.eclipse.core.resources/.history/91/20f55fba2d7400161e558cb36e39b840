@@ -1,0 +1,22 @@
+package factory;
+
+import contribuintes.Contribuinte;
+import contribuintes.Taxista;
+import exceptions.StringInvalidaException;
+
+public class ContribuinteFactory {
+	
+	public ContribuinteFactory() {
+	}
+	
+	public Contribuinte criaTaxista(String nome, String cpf, int quilometros, int passageiros) {
+		try {
+			Contribuinte taxista = new Taxista(nome, cpf, quilometros, passageiros);
+			return taxista;
+		} catch (StringInvalidaException e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+
+}

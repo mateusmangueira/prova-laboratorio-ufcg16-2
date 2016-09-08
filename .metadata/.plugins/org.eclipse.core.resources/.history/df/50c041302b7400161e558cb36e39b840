@@ -1,0 +1,74 @@
+package ipiranga;
+
+import exceptions.StringInvalidaException;
+import exceptions.ValorInvalidoException;
+
+public class Professores extends Contribuinte {
+
+	private double salario;
+	private double despesas;
+
+	public Professores(String nomeContribuinte, String cpfContribuinte,
+			double valorBens, double salario) throws StringInvalidaException,
+			ValorInvalidoException {
+		super(nomeContribuinte, cpfContribuinte, valorBens);
+
+		if (salario < 0) {
+			throw new ValorInvalidoException(
+					"Salario nao pode ser menor que zero");
+		}
+		this.salario = salario;
+		this.despesas = 0.0;
+	}
+
+	public double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+
+	public double getDespesas() {
+		return despesas;
+	}
+
+	public void setDespesas(double despesas) {
+		this.despesas = despesas;
+	}
+
+	public double getDescontos(double despesas) {
+		return (despesas * 0.5);
+	}
+
+	@Override
+	public double calculoTributacao() {
+		if (this.getSalario() <= 880.0) {
+			return this.getSalario() - (0.05 * this.getSalario());
+		} else if (this.getSalario() > 880.0
+				&& this.getSalario() <= (5 * 880.0)) {
+			return this.getSalario() - (0.10 * this.getSalario());
+		} else {
+			return this.getSalario() - (0.20 * this.getSalario());
+		}
+	}
+
+	public double impostoPago() {
+		double imposto = this.calculoTributacao()
+				- this.getDescontos(this.getDespesas());
+		if (this.getDescontos(this.getDespesas()) > this.calculoTributacao()) {
+			return 0.0;
+		} else {
+			return imposto;
+		}
+	}
+
+	public String toString() {
+		if (this.getValorBens() > 100000.0) {
+			return "[CAMINHONEIRO] Acima do Limiar " + super.toString();
+		} else {
+			return "[CAMINHONEIRO] " + super.toString();
+		}
+	}
+
+}

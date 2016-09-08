@@ -1,0 +1,22 @@
+package ipiranga;
+
+import exceptions.StringInvalidaException;
+
+public class Professores extends Contribuinte {
+	
+	private double salario;
+
+	public Professores(String nomeContribuinte, String cpfContribuinte,
+			double valorBens, double salario) throws StringInvalidaException {
+		super(nomeContribuinte, cpfContribuinte, valorBens);
+		
+		if(salario < 0) {
+			throw new ValorInvalidoException("Salario nao pode ser menor que zero");
+		}
+		
+		this.salario = salario;
+	}
+	
+	
+
+}

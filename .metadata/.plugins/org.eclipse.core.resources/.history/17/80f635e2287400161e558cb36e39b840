@@ -1,0 +1,18 @@
+package ipiranga;
+
+import exceptions.StringInvalidaException;
+
+public class Professores extends Contribuinte {
+	
+	private double salario;
+
+	public Professores(String nomeContribuinte, String cpfContribuinte,
+			double valorBens) throws StringInvalidaException {
+		super(nomeContribuinte, cpfContribuinte, valorBens);
+		
+		this.salario = salario
+	}
+	
+	
+
+}

@@ -1,0 +1,21 @@
+package ipiranga;
+
+public class Contribuinte {
+	
+	private String nome;
+	private String cpf;
+	private double valorBens;
+	
+	public Contribuinte(String nomeContribuinte, String cpfContribuinte, double valorBens) {
+		if(nomeContribuinte.equals(null) || nomeContribuinte.trim().isEmpty()) {
+			throw new StringInvalidaException("Nome do contribuinte nao pode ser vazio ou nulo.");
+		} if(cpfContribuinte.equals(null) || cpfContribuinte.trim().isEmpty()) {
+			throw new StringInvalidaException("Cpf do contribuinte nao pode ser vazio ou nulo.");
+		}
+		this.nome = nomeContribuinte;
+		this.cpf = cpfContribuinte;
+		this.valorBens = 0.0;
+	}
+	
+
+}

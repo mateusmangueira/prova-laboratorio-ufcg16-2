@@ -1,0 +1,138 @@
+package ipiranga;
+
+import java.util.List;
+import java.util.Set;
+
+import contribuintes.Contribuinte;
+import factory.ContribuinteFactory;
+
+public class IpirangaImpostoSimplesBR implements IpirangaIF {
+
+	Set<Contribuinte> contribuintes;
+	ContribuinteFactory fabricaContribuinte;
+
+	public IpirangaImpostoSimplesBR() {
+		this.contribuintes = HashSet<Contribuinte>();
+		this.fabricaContribuinte = new ContribuinteFactory();
+	}
+
+	public Set<Contribuinte> getContribuintes() {
+		return contribuintes;
+	}
+
+	public void setContribuintes(Set<Contribuinte> contribuintes) {
+		this.contribuintes = contribuintes;
+	}
+
+	public ContribuinteFactory getFabricaContribuinte() {
+		return fabricaContribuinte;
+	}
+
+	private boolean contemContribuinte(String cpf) {
+		for (Contribuinte contribuinte : this.getContribuintes()) {
+			if (contribuinte.getCpf().equalsIgnoreCase(cpf)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private Contribuinte pesquisaContribuinte(String cpf) {
+		for (Contribuinte contribuinte : this.getContribuintes()) {
+			if (contribuinte.getCpf().equalsIgnoreCase(cpf)) {
+				return contribuinte;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void adicionarTaxista(String nome, String cpf, int quilometros,
+			int passageiros) throws Exception {
+		Contribuinte taxista = this.getFabricaContribuinte().criaTaxista(nome,
+				cpf, quilometros, passageiros);
+		if (!this.getContribuintes().contains(taxista)) {
+			this.getContribuintes().add(taxista);
+		}
+	}
+
+	@Override
+	public void adicionarCaminhoneiro(String nome, String cpf, int quilometros,
+			int carga) throws Exception {
+		Contribuinte caminhoneiro = this.getFabricaContribuinte()
+				.criaCaminhoneiro(nome, cpf, quilometros, carga);
+		if (!this.getContribuintes().contains(caminhoneiro)) {
+			this.getContribuintes().add(caminhoneiro);
+		}
+	}
+
+	@Override
+	public void adicionarProfessor(String nome, String cpf, double despesas,
+			double salario) throws Exception {
+		Contribuinte professor = this.getFabricaContribuinte().criaProfessor(
+				nome, cpf, salario, despesas);
+		if (!this.getContribuintes().contains(professor)) {
+			this.getContribuintes().add(professor);
+		}
+	}
+
+	@Override
+	public void adicionarBem(String cpf, double valor) throws Exception {
+		if (this.contemContribuinte(cpf)) {
+			Contribuinte contribuinte = this.pesquisaContribuinte(cpf);
+			contribuinte.setValorBens((contribuinte.getValorBens() + valor));
+		}
+
+	}
+
+	@Override
+	public boolean removerContribuinte(String cpf) throws Exception {
+		if (this.contemContribuinte(cpf)) {
+			Contribuinte contribuinte = this.pesquisaContribuinte(cpf);
+			this.getContribuintes().remove(contribuinte);
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public double calcularImpostos(String cpf) throws Exception {
+		if (this.contemContribuinte(cpf)) {
+			Contribuinte contribuinte = this.pesquisaContribuinte(cpf);
+			return contribuinte.calculoTributacao();
+		}
+		return 0;
+	}
+
+	@Override
+	public List<String> getContribuintesOrdenadosPorImposto() {
+
+		return null;
+	}
+
+	@Override
+	public String getString(String cpf) {
+
+		return null;
+	}
+
+	@Override
+	public double getBens(String cpf) {
+
+		return 0;
+	}
+
+	@Override
+	public double getImposto(String cpf) {
+
+		return 0;
+	}
+
+	@Override
+	public Set<String> getContribuintesAcimaLimiar() {
+
+		return null;
+	}
+
+}

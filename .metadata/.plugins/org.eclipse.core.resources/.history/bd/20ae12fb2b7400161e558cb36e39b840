@@ -1,0 +1,82 @@
+package ipiranga;
+
+import java.util.List;
+import java.util.Set;
+
+public class IpirangaImpostoSimplesBR implements IpirangaIF {
+	
+	Set<Contribuinte> contribuintes;
+	
+	public IpirangaImpostoSimplesBR() {
+		this.contribuintes = HashSet<Contribuinte>();
+	}
+
+	@Override
+	public boolean adicionarTaxista(String nome, String cpf, int quilometros,
+			int passageiros) throws Exception {
+		th
+		
+		
+
+	}
+
+	@Override
+	public void adicionarCaminhoneiro(String nome, String cpf, int quilometros,
+			int carga) throws Exception {
+
+	}
+
+	@Override
+	public void adicionarProfessor(String nome, String cpf, double despesas,
+			double salario) throws Exception {
+
+	}
+
+	@Override
+	public void adicionarBem(String cpf, double valor) throws Exception {
+
+	}
+
+	@Override
+	public boolean removerContribuinte(String cpf) throws Exception {
+
+		return false;
+	}
+
+	@Override
+	public double calcularImpostos(String cpf) throws Exception {
+
+		return 0;
+	}
+
+	@Override
+	public List<String> getContribuintesOrdenadosPorImposto() {
+
+		return null;
+	}
+
+	@Override
+	public String getString(String cpf) {
+
+		return null;
+	}
+
+	@Override
+	public double getBens(String cpf) {
+
+		return 0;
+	}
+
+	@Override
+	public double getImposto(String cpf) {
+
+		return 0;
+	}
+
+	@Override
+	public Set<String> getContribuintesAcimaLimiar() {
+
+		return null;
+	}
+
+}

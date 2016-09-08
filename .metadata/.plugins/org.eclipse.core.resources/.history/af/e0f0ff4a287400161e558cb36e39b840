@@ -1,0 +1,55 @@
+package ipiranga;
+
+import exceptions.StringInvalidaException;
+
+public class Caminhoneiro extends Contribuinte {
+	
+	private double toneladasTransportadas;
+	private double quilometragem;
+	
+	public Caminhoneiro(String nomeContribuinte, String cpfContribuinte,
+			double valorBens) throws StringInvalidaException {
+		super(nomeContribuinte, cpfContribuinte, valorBens);
+		
+		this.toneladasTransportadas = 0.0;
+		this.quilometragem = 0.0;
+	}
+
+	public double getToneladasTransportadas() {
+		return toneladasTransportadas;
+	}
+
+	public void setToneladasTransportadas(double toneladasTransportadas) {
+		this.toneladasTransportadas = toneladasTransportadas;
+	}
+
+	public double getQuilometragem() {
+		return quilometragem;
+	}
+
+	public void setQuilometragem(double quilometragem) {
+		this.quilometragem = quilometragem;
+	}
+	
+	public double getDescontos() {
+		return this.getQuilometragem() * 0.01;
+	}
+	
+	public double impostoPago() {
+		double imposto = this.calculoTributacao() - this.getDescontos();
+		if (this.getDescontos() > this.calculoTributacao()) {
+			return 0.0;
+		} else {
+			return imposto;
+		}
+	}
+	
+	@Override
+	public double calculoTributacao() {
+		if(this.getToneladasTransportadas() <= 10.0) {
+			return 500.0;
+		} else {
+			return 500.0 + (100.0 * (this.getToneladasTransportadas() - 10.0));
+		}
+	}
+}

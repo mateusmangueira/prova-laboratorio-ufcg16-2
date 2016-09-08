@@ -1,0 +1,18 @@
+package ipiranga;
+
+import exceptions.StringInvalidaException;
+
+public class Caminhoneiro extends Contribuinte {
+	
+	private double toneladasTransportadas;
+	private double quilometragem;
+	
+	public Caminhoneiro(String nomeContribuinte, String cpfContribuinte,
+			double valorBens) throws StringInvalidaException {
+		super(nomeContribuinte, cpfContribuinte, valorBens);
+		
+		this.toneladasTransportadas = 0.0;
+		this.quilometragem = 0.0;
+	}
+	
+}

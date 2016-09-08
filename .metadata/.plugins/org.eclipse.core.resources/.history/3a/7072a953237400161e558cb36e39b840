@@ -1,0 +1,11 @@
+package ipiranga;
+
+public class Contribuinte {
+	
+	static final double valorBens = 0;
+	
+	private String nome;
+	private String cpf;
+	
+
+}

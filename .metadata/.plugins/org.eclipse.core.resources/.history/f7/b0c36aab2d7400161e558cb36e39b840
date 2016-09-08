@@ -1,0 +1,64 @@
+package contribuintes;
+
+import exceptions.StringInvalidaException;
+
+public class Caminhoneiro extends Contribuinte {
+
+	private int toneladasTransportadas;
+	private int quilometragem;
+
+	public Caminhoneiro(String nomeContribuinte, String cpfContribuinte,
+			int toneladasTransportadas, int quilometragem)
+			throws StringInvalidaException {
+		super(nomeContribuinte, cpfContribuinte, 0.0);
+
+		this.toneladasTransportadas = toneladasTransportadas;
+		this.quilometragem = quilometragem;
+	}
+
+	public int getToneladasTransportadas() {
+		return toneladasTransportadas;
+	}
+
+	public void setToneladasTransportadas(double toneladasTransportadas) {
+		this.toneladasTransportadas = toneladasTransportadas;
+	}
+
+	public double getQuilometragem() {
+		return quilometragem;
+	}
+
+	public void setQuilometragem(double quilometragem) {
+		this.quilometragem = quilometragem;
+	}
+
+	public double getDescontos() {
+		return this.getQuilometragem() * 0.01;
+	}
+
+	public double impostoPago() {
+		double imposto = this.calculoTributacao() - this.getDescontos();
+		if (this.getDescontos() > this.calculoTributacao()) {
+			return 0.0;
+		} else {
+			return imposto;
+		}
+	}
+
+	@Override
+	public double calculoTributacao() {
+		if (this.getToneladasTransportadas() <= 10.0) {
+			return 500.0;
+		} else {
+			return 500.0 + (100.0 * (this.getToneladasTransportadas() - 10.0));
+		}
+	}
+
+	public String toString() {
+		if (this.getValorBens() > 100000.0) {
+			return "[CAMINHONEIRO] Acima do Limiar " + super.toString();
+		} else {
+			return "[CAMINHONEIRO] " + super.toString();
+		}
+	}
+}

@@ -1,0 +1,6 @@
+package ipiranga;
+
+public class Taxista extends Contribuinte {
+	
+
+}
